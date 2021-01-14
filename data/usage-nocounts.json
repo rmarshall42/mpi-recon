@@ -8,8 +8,7 @@
     "MPI_COMM_RANK": 3,
     "MPI_FINALIZE": 3,
     "MPI_SEND": 6,
-    "MPI_REDUCE": 24
-},"ghcounts":{    
+    "MPI_REDUCE": 24,
     "OPENMP": 46,
     "OPENACC": 0,
     "CUDA": 0,
@@ -97,8 +96,7 @@
     "MPI_FILE_WRITE": 5,
     "X_MPI_SUM": 3,
     "MPI_IRECV": 96,
-    "MPI_CART_CREATE": 3
-},"ghcounts":{    
+    "MPI_CART_CREATE": 3,
     "OPENMP": 479,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1396,8 +1394,7 @@
     "MPI_METHODPMPI_TYPE_INDEXED": 1,
     "MPI_METHODPMPI_FILE_IWRITE_AT": 1,
     "MPI_METHODPMPI_IRSEND": 1,
-    "MPI_FILE_CREATE_ERRHANDLER": 2
-},"ghcounts":{    
+    "MPI_FILE_CREATE_ERRHANDLER": 2,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1442,8 +1439,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 1,
     "X_MPI_LONG": 3,
     "X_MPI_SUM": 1,
-    "MPI_IRECV": 10
-},"ghcounts":{    
+    "MPI_IRECV": 10,
     "OPENMP": 37204,
     "OPENACC": 0,
     "CUDA": 781,
@@ -1472,8 +1468,7 @@
     "X_MPI_CHAR": 8,
     "MPI_ISEND": 6,
     "MPI_FINALIZE": 1,
-    "MPI_INIT_THREAD": 1
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 1,
     "OPENMP": 13,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1487,8 +1482,7 @@
 }, {
   "ghrepo": "LightGBM-Win10-GPU-",
   "data": {
-    "MPI_SAFE_CALL": 14
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 14,
     "OPENMP": 210,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1520,8 +1514,7 @@
     "X_MPI_CHAR": 2,
     "MPI_COMM_ACCEPT": 1,
     "X_MPI_INFO_NULL": 1,
-    "MPI_INIT_THREAD": 3
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 3,
     "OPENMP": 107,
     "OPENACC": 0,
     "CUDA": 1692,
@@ -1558,8 +1551,7 @@
     "X_MPI_LONG": 4,
     "MPI_ALLREDUCE": 6,
     "MPI_COMM_FREE": 6,
-    "MPI_IRECV": 6
-},"ghcounts":{    
+    "MPI_IRECV": 6,
     "OPENMP": 15,
     "OPENACC": 7,
     "CUDA": 170,
@@ -1604,8 +1596,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 2,
     "X_MPI_LONG": 6,
     "X_MPI_SUM": 2,
-    "MPI_IRECV": 20
-},"ghcounts":{    
+    "MPI_IRECV": 20,
     "OPENMP": 74902,
     "OPENACC": 0,
     "CUDA": 2480,
@@ -1661,8 +1652,7 @@
     "MPI_COMM_FREE": 1,
     "MPI_EXSCAN": 3,
     "MPI_COMM_CREATE": 5,
-    "MPI_FILE_WRITE_ORDERED": 1
-},"ghcounts":{    
+    "MPI_FILE_WRITE_ORDERED": 1,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1709,8 +1699,7 @@
     "MPI_ALLGATHER": 12,
     "MPI_SEND": 16,
     "X_MPI_OFFGRID_SPIKE": 1,
-    "MPI_INIT_THREAD": 1
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 1,
     "OPENMP": 36,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1740,8 +1729,7 @@
     "MPI_SEND": 9,
     "X_MPI_CHAR": 3,
     "MPI_BARRIER": 36,
-    "MPI_TYPE_CONTIGUOUS": 4
-},"ghcounts":{    
+    "MPI_TYPE_CONTIGUOUS": 4,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 74,
@@ -1765,8 +1753,7 @@
     "MPI_GET_COUNT": 2,
     "MPI_FINALIZE": 1,
     "X_MPI_SEND_BUFFER_PER_PARTITION": 1,
-    "MPI_BUFFER_ATTACH": 1
-},"ghcounts":{    
+    "MPI_BUFFER_ATTACH": 1,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1811,8 +1798,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 1,
     "X_MPI_LONG": 3,
     "X_MPI_SUM": 1,
-    "MPI_IRECV": 9
-},"ghcounts":{    
+    "MPI_IRECV": 9,
     "OPENMP": 22931,
     "OPENACC": 0,
     "CUDA": 451,
@@ -1826,8 +1812,7 @@
 }, {
   "ghrepo": "lightgbm_colab",
   "data": {
-    "MPI_SAFE_CALL": 14
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 14,
     "OPENMP": 213,
     "OPENACC": 0,
     "CUDA": 2,
@@ -1841,8 +1826,7 @@
 }, {
   "ghrepo": "mimalloc-lgb",
   "data": {
-    "MPI_SAFE_CALL": 16
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 16,
     "OPENMP": 185,
     "OPENACC": 0,
     "CUDA": 2,
@@ -1889,8 +1873,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 2,
     "X_MPI_LONG": 4,
     "X_MPI_SUM": 2,
-    "MPI_IRECV": 10
-},"ghcounts":{    
+    "MPI_IRECV": 10,
     "OPENMP": 37204,
     "OPENACC": 0,
     "CUDA": 782,
@@ -1908,8 +1891,7 @@
     "MPI_COMM_SIZE": 1,
     "MPI_INIT": 1,
     "MPI_FINALIZE": 1,
-    "MPI_COMM_RANK": 1
-},"ghcounts":{    
+    "MPI_COMM_RANK": 1,
     "OPENMP": 19,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1923,8 +1905,7 @@
 }, {
   "ghrepo": "lightdbm",
   "data": {
-    "MPI_SAFE_CALL": 14
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 14,
     "OPENMP": 212,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1938,8 +1919,7 @@
 }, {
   "ghrepo": "Learn",
   "data": {
-    "MPI_SAFE_CALL": 14
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 14,
     "OPENMP": 213,
     "OPENACC": 0,
     "CUDA": 0,
@@ -1997,8 +1977,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 1,
     "X_MPI_LONG": 3,
     "X_MPI_SUM": 1,
-    "MPI_IRECV": 9
-},"ghcounts":{    
+    "MPI_IRECV": 9,
     "OPENMP": 35908,
     "OPENACC": 0,
     "CUDA": 708,
@@ -2025,8 +2004,7 @@
     "MPI_FINALIZE": 26,
     "MPI_ALLGATHER": 19,
     "MPI_SEND": 20,
-    "MPI_REDUCE": 11
-},"ghcounts":{    
+    "MPI_REDUCE": 11,
     "OPENMP": 64,
     "OPENACC": 0,
     "CUDA": 0,
@@ -2058,8 +2036,7 @@
     "X_MPI_CHAR": 2,
     "MPI_COMM_ACCEPT": 1,
     "X_MPI_INFO_NULL": 1,
-    "MPI_INIT_THREAD": 3
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 3,
     "OPENMP": 102,
     "OPENACC": 0,
     "CUDA": 1801,
@@ -2073,8 +2050,7 @@
 }, {
   "ghrepo": "lightgbm_kaggle",
   "data": {
-    "MPI_SAFE_CALL": 14
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 14,
     "OPENMP": 213,
     "OPENACC": 0,
     "CUDA": 2,
@@ -2106,8 +2082,7 @@
     "MPI_SETZERO": 5,
     "MPI_SUBTRACT": 3,
     "MPI_SETONE": 1,
-    "MPI_ADD": 7
-},"ghcounts":{    
+    "MPI_ADD": 7,
     "OPENMP": 11,
     "OPENACC": 0,
     "CUDA": 0,
@@ -2154,8 +2129,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 2,
     "X_MPI_LONG": 4,
     "X_MPI_SUM": 2,
-    "MPI_IRECV": 11
-},"ghcounts":{    
+    "MPI_IRECV": 11,
     "OPENMP": 47603,
     "OPENACC": 207,
     "CUDA": 1320,
@@ -2833,8 +2807,7 @@
     "X_MPI_WIN_LOCK": 1,
     "X_MPI_COMM_GET_PARENT": 1,
     "X_MPI_PACK_EXTERNAL": 3,
-    "X_MPI_TYPE_CONTIGUOUS": 2
-},"ghcounts":{    
+    "X_MPI_TYPE_CONTIGUOUS": 2,
     "OPENMP": 140,
     "OPENACC": 0,
     "CUDA": 0,
@@ -2874,8 +2847,7 @@
     "MPI_ALLREDUCE": 2,
     "MPI_COMM_FREE": 1,
     "MPI_FILE_WRITE": 1,
-    "MPI_ERROR_STRING": 1
-},"ghcounts":{    
+    "MPI_ERROR_STRING": 1,
     "OPENMP": 32,
     "OPENACC": 0,
     "CUDA": 68,
@@ -2889,8 +2861,7 @@
 }, {
   "ghrepo": "lightgbm-verbose",
   "data": {
-    "MPI_SAFE_CALL": 14
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 14,
     "OPENMP": 213,
     "OPENACC": 0,
     "CUDA": 0,
@@ -2922,8 +2893,7 @@
     "X_MPI_CHAR": 2,
     "MPI_COMM_ACCEPT": 1,
     "X_MPI_INFO_NULL": 1,
-    "MPI_INIT_THREAD": 3
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 3,
     "OPENMP": 109,
     "OPENACC": 0,
     "CUDA": 1696,
@@ -2992,8 +2962,7 @@
     "X_MPI_SUM": 3,
     "MPI_ERROR_STRING": 1,
     "MPI_IRECV": 18,
-    "MPI_CART_CREATE": 3
-},"ghcounts":{    
+    "MPI_CART_CREATE": 3,
     "OPENMP": 1,
     "OPENACC": 0,
     "CUDA": 0,
@@ -3018,8 +2987,7 @@
     "MPI_IRECV": 4,
     "MPI_TEST": 4,
     "MPI_FINALIZE": 1,
-    "MPI_INIT_THREAD": 1
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 1,
     "OPENMP": 11,
     "OPENACC": 0,
     "CUDA": 5,
@@ -3064,8 +3032,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 1,
     "X_MPI_LONG": 3,
     "X_MPI_SUM": 1,
-    "MPI_IRECV": 11
-},"ghcounts":{    
+    "MPI_IRECV": 11,
     "OPENMP": 38714,
     "OPENACC": 0,
     "CUDA": 902,
@@ -3092,8 +3059,7 @@
     "MPI_FINALIZE": 8,
     "MPI_IRECV": 1,
     "MPI_SEND": 2,
-    "MPI_REDUCE": 6
-},"ghcounts":{    
+    "MPI_REDUCE": 6,
     "OPENMP": 14,
     "OPENACC": 0,
     "CUDA": 0,
@@ -3138,8 +3104,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 1,
     "X_MPI_LONG": 3,
     "X_MPI_SUM": 1,
-    "MPI_IRECV": 10
-},"ghcounts":{    
+    "MPI_IRECV": 10,
     "OPENMP": 37206,
     "OPENACC": 0,
     "CUDA": 752,
@@ -3153,8 +3118,7 @@
 }, {
   "ghrepo": "light",
   "data": {
-    "MPI_SAFE_CALL": 28
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 28,
     "OPENMP": 422,
     "OPENACC": 0,
     "CUDA": 0,
@@ -3201,8 +3165,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 2,
     "X_MPI_LONG": 4,
     "X_MPI_SUM": 2,
-    "MPI_IRECV": 11
-},"ghcounts":{    
+    "MPI_IRECV": 11,
     "OPENMP": 47851,
     "OPENACC": 252,
     "CUDA": 1371,
@@ -3234,8 +3197,7 @@
     "X_MPI_CHAR": 2,
     "MPI_COMM_ACCEPT": 1,
     "X_MPI_INFO_NULL": 1,
-    "MPI_INIT_THREAD": 3
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 3,
     "OPENMP": 107,
     "OPENACC": 0,
     "CUDA": 1692,
@@ -3277,8 +3239,7 @@
     "MPI_ALLGATHER": 1,
     "MPI_SEND": 30,
     "MPI_BARRIER": 8,
-    "MPI_UNPACK": 25
-},"ghcounts":{    
+    "MPI_UNPACK": 25,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
@@ -3330,8 +3291,7 @@
     "MPI_ALLREDUCE": 3,
     "MPI_FILE_WRITE": 1,
     "MPI_IRECV": 2,
-    "MPI_GATHER": 10
-},"ghcounts":{    
+    "MPI_GATHER": 10,
     "OPENMP": 54,
     "OPENACC": 9,
     "CUDA": 157,
@@ -4393,8 +4353,7 @@
     "X_MPI_COMM_GET_PARENT": 1,
     "X_MPI_PACK_EXTERNAL": 3,
     "X_MPI_NEIGHBOR_ALLTOALL": 1,
-    "X_MPI_TYPE_CONTIGUOUS": 2
-},"ghcounts":{    
+    "X_MPI_TYPE_CONTIGUOUS": 2,
     "OPENMP": 140,
     "OPENACC": 0,
     "CUDA": 0,
@@ -4425,8 +4384,7 @@
     "MPI_SEND": 2,
     "MPI_IRECV": 1,
     "MPI_BARRIER": 2,
-    "MPI_PACK_SIZE": 1
-},"ghcounts":{    
+    "MPI_PACK_SIZE": 1,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 4,
@@ -4440,8 +4398,7 @@
 }, {
   "ghrepo": "DPBoost",
   "data": {
-    "MPI_SAFE_CALL": 14
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 14,
     "OPENMP": 216,
     "OPENACC": 0,
     "CUDA": 0,
@@ -4473,8 +4430,7 @@
     "X_MPI_CHAR": 2,
     "MPI_COMM_ACCEPT": 1,
     "X_MPI_INFO_NULL": 1,
-    "MPI_INIT_THREAD": 3
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 3,
     "OPENMP": 102,
     "OPENACC": 0,
     "CUDA": 1669,
@@ -5423,8 +5379,7 @@
     "X_MPI_FATAL_EDUMP_TABLE_LENGTH": 1,
     "X_MPI_IOCFACTS_CAPABILITY_REPLY_HOST_SIGNAL": 1,
     "X_MPI_FW_HEADER_PID_PROD_INITIATOR_SCSI": 1,
-    "X_MPI_FC_DEVICE_PGAD_ND_PORT_MASK": 1
-},"ghcounts":{    
+    "X_MPI_FC_DEVICE_PGAD_ND_PORT_MASK": 1,
     "OPENMP": 26,
     "OPENACC": 0,
     "CUDA": 112,
@@ -5469,8 +5424,7 @@
     "X_MPI_CHAR": 2,
     "MPI_COMM_ACCEPT": 1,
     "X_MPI_INFO_NULL": 1,
-    "MPI_INIT_THREAD": 3
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 3,
     "OPENMP": 107,
     "OPENACC": 0,
     "CUDA": 1691,
@@ -5488,8 +5442,7 @@
     "MPI_COMM_SIZE": 1,
     "MPI_INIT": 1,
     "MPI_FINALIZE": 1,
-    "MPI_COMM_RANK": 1
-},"ghcounts":{    
+    "MPI_COMM_RANK": 1,
     "OPENMP": 5,
     "OPENACC": 0,
     "CUDA": 0,
@@ -5564,8 +5517,7 @@
     "MPI_IRECV": 35,
     "X_MPI_TEST": 2,
     "MPI_CART_CREATE": 3,
-    "MPI_IBARRIER": 12
-},"ghcounts":{    
+    "MPI_IBARRIER": 12,
     "OPENMP": 16,
     "OPENACC": 0,
     "CUDA": 2,
@@ -5594,8 +5546,7 @@
   "data": {
     "MPI_FINALIZE": 2,
     "MPI_ABORT": 1,
-    "MPI_BARRIER": 1
-},"ghcounts":{    
+    "MPI_BARRIER": 1,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
@@ -5694,8 +5645,7 @@
     "MPI_IALLTOALL": 2,
     "MPI_COMM_FREE": 9,
     "MPI_PACK_SIZE": 4,
-    "MPI_CART_CREATE": 6
-},"ghcounts":{    
+    "MPI_CART_CREATE": 6,
     "OPENMP": 1500,
     "OPENACC": 0,
     "CUDA": 60,
@@ -5736,8 +5686,7 @@
     "MPI_ALLREDUCE": 12,
     "MPI_COMM_FREE": 3,
     "MPI_EXSCAN": 1,
-    "MPI_IRECV": 15
-},"ghcounts":{    
+    "MPI_IRECV": 15,
     "OPENMP": 444,
     "OPENACC": 0,
     "CUDA": 3,
@@ -5797,8 +5746,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 2,
     "X_MPI_LONG": 4,
     "X_MPI_SUM": 2,
-    "MPI_IRECV": 11
-},"ghcounts":{    
+    "MPI_IRECV": 11,
     "OPENMP": 48335,
     "OPENACC": 667,
     "CUDA": 1436,
@@ -5816,8 +5764,7 @@
     "MPI_INFO_DUP": 1,
     "MPI_INITIALIZED": 1,
     "MPI_COMM_DUP": 2,
-    "MPI_BARRIER": 1
-},"ghcounts":{    
+    "MPI_BARRIER": 1,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
@@ -5831,8 +5778,7 @@
 }, {
   "ghrepo": "lightgbm-recsys2019",
   "data": {
-    "MPI_SAFE_CALL": 14
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 14,
     "OPENMP": 221,
     "OPENACC": 0,
     "CUDA": 0,
@@ -5854,8 +5800,7 @@
     "MPI_BARRIER": 1,
     "MPI_SEND": 2,
     "MPI_ISEND": 5,
-    "MPI_UNPACK": 10
-},"ghcounts":{    
+    "MPI_UNPACK": 10,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
@@ -5893,8 +5838,7 @@
     "MPI_SSEND": 1,
     "MPI_ALLREDUCE": 4,
     "X_MPI_SUM": 3,
-    "MPI_INIT_THREAD": 1
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 1,
     "OPENMP": 50,
     "OPENACC": 0,
     "CUDA": 0,
@@ -5908,8 +5852,7 @@
 }, {
   "ghrepo": "LightGBM",
   "data": {
-    "MPI_SAFE_CALL": 16
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 16,
     "OPENMP": 184,
     "OPENACC": 0,
     "CUDA": 0,
@@ -5988,8 +5931,7 @@
     "MPI_COMM_CREATE": 5,
     "MPI_BARRIER": 2,
     "MPI_FILE_WRITE_ORDERED": 2,
-    "MPI_TYPE_CONTIGUOUS": 4
-},"ghcounts":{    
+    "MPI_TYPE_CONTIGUOUS": 4,
     "OPENMP": 27,
     "OPENACC": 0,
     "CUDA": 0,
@@ -6021,8 +5963,7 @@
     "X_MPI_CHAR": 2,
     "MPI_COMM_ACCEPT": 1,
     "X_MPI_INFO_NULL": 1,
-    "MPI_INIT_THREAD": 3
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 3,
     "OPENMP": 114,
     "OPENACC": 0,
     "CUDA": 1758,
@@ -6064,8 +6005,7 @@
     "MPI_PROBE": 4,
     "MPI_ALLREDUCE": 2,
     "MPI_COMM_FREE": 4,
-    "MPI_SCATTER": 5
-},"ghcounts":{    
+    "MPI_SCATTER": 5,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
@@ -6110,8 +6050,7 @@
     "X_MPI_C_LONG_DOUBLE_COMPLEX": 1,
     "X_MPI_LONG": 3,
     "X_MPI_SUM": 1,
-    "MPI_IRECV": 9
-},"ghcounts":{    
+    "MPI_IRECV": 9,
     "OPENMP": 22874,
     "OPENACC": 0,
     "CUDA": 443,
@@ -7073,8 +7012,7 @@
     "X_MPI_FATAL_EDUMP_TABLE_LENGTH": 1,
     "X_MPI_IOCFACTS_CAPABILITY_REPLY_HOST_SIGNAL": 1,
     "X_MPI_FW_HEADER_PID_PROD_INITIATOR_SCSI": 1,
-    "X_MPI_FC_DEVICE_PGAD_ND_PORT_MASK": 1
-},"ghcounts":{    
+    "X_MPI_FC_DEVICE_PGAD_ND_PORT_MASK": 1,
     "OPENMP": 100,
     "OPENACC": 0,
     "CUDA": 149,
@@ -7162,8 +7100,7 @@
     "MPI_ALLREDUCE": 16,
     "X_MPI_GROUP_LOCAL_WORLD": 3,
     "MPI_IRECV": 10,
-    "MPI_TYPE_CREATE_DARRAY": 1
-},"ghcounts":{    
+    "MPI_TYPE_CREATE_DARRAY": 1,
     "OPENMP": 378,
     "OPENACC": 0,
     "CUDA": 0,
@@ -7233,8 +7170,7 @@
     "MPI_COMM_CREATE_GROUP": 2,
     "MPI_SCATTER": 7,
     "MPI_IRECV": 3,
-    "MPI_CART_CREATE": 1
-},"ghcounts":{    
+    "MPI_CART_CREATE": 1,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 6,
@@ -7253,8 +7189,7 @@
     "MPI_DATATYPE_WRAPPER": 3,
     "X_MPI_SUM": 2,
     "MPI_CHECK": 11,
-    "X_MPI_CHAR": 2
-},"ghcounts":{    
+    "X_MPI_CHAR": 2,
     "OPENMP": 22,
     "OPENACC": 0,
     "CUDA": 2459,
@@ -7286,8 +7221,7 @@
     "X_MPI_CHAR": 2,
     "MPI_COMM_ACCEPT": 1,
     "X_MPI_INFO_NULL": 1,
-    "MPI_INIT_THREAD": 3
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 3,
     "OPENMP": 107,
     "OPENACC": 0,
     "CUDA": 1693,
@@ -7301,8 +7235,7 @@
 }, {
   "ghrepo": "incre_lightgbm",
   "data": {
-    "MPI_SAFE_CALL": 16
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 16,
     "OPENMP": 210,
     "OPENACC": 0,
     "CUDA": 2,
@@ -7316,8 +7249,7 @@
 }, {
   "ghrepo": "Launcher3-7.0",
   "data": {
-    "MPI_SAFE_CALL": 14
-},"ghcounts":{    
+    "MPI_SAFE_CALL": 14,
     "OPENMP": 193,
     "OPENACC": 0,
     "CUDA": 0,
@@ -7398,8 +7330,7 @@
     "X_MPI_TAG_LOG_NODE_SET_OUTPUT_FILE": 1,
     "X_MPI_TAG_INPUT_NODE_GET_CURRENT_TIMESTAMP": 3,
     "X_MPI_TAG_OUTPUT_NODE_GLOBAL_HEADER": 2,
-    "MPI_INIT_THREAD": 1
-},"ghcounts":{    
+    "MPI_INIT_THREAD": 1,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
@@ -8231,8 +8162,7 @@
     "X_MPI_WIN_LOCK": 1,
     "X_MPI_COMM_GET_PARENT": 1,
     "X_MPI_PACK_EXTERNAL": 1,
-    "X_MPI_TYPE_CONTIGUOUS": 1
-},"ghcounts":{    
+    "X_MPI_TYPE_CONTIGUOUS": 1,
     "OPENMP": 0,
     "OPENACC": 0,
     "CUDA": 0,
