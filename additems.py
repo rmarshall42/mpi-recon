@@ -6,38 +6,43 @@ import time
 import urlparse
 import sqlite3
 import json
+import importlib
 
 from sqlite3 import Error
+
+from common import sql_queries
+
+
+SHARED = 'common'
 
 # this is specific to github
 def add_repo(conn, r):
 	rec = r.get('data')
 	tup = (
-		None, 'shengg', r.get('ghrepo'), 0, 'https://github.com/shengg/stochastic_pt.git', None, rec.get('OPENMP'),
+		None, 'shengg', r.get('ghrepo'), 0, None, None, rec.get('OPENMP'),
 	rec.get('OPENACC'),rec.get('CUDA'),rec.get('OPENCL'),rec.get('C_LINES'),rec.get('CPP_LINES'),rec.get('C_CPP_H_LINES'),
 	rec.get('FORTRAN_LINES'),rec.get('LINES_OF_CODE'))
 
-	#print (tup)
+	cur = conn.cursor()
+	cur.execute(sql_queries.insert_repos(), tup)
+	conn.commit()
 
-	sql = ''' INSERT INTO Repos (
-		repo_id,owner,reponame,revision_id,clone_url,
-		retrieval_date,omp_occs,acc_occs,cuda_occs,ocl_occs,
-		c_lines,cpp_lines,c_cpp_h_lines,fortran_lines,total_lines
-	)
-	VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); '''
+	return cur.lastrowid
+
+def add_owner(conn, r):
+	tup = (r.get('ghrepo'), get_owner_name(r.get('data').get(clone_url)))
 
 	cur = conn.cursor()
-	cur.execute(sql, tup)
+	cur.execute(sql_queries.insert_owners(), urec)
 	conn.commit()
 
 	return cur.lastrowid
 
 def add_usage(conn, urec):
-	sql = ''' INSERT INTO projects(name,begin_date,end_date)
-						VALUES(?,?,?) '''
 	cur = conn.cursor()
-	cur.execute(sql, urec)
+	cur.execute(sql_queries.insert_usage(), urec)
 	conn.commit()
+
 	return cur.lastrowid
 
 
@@ -63,7 +68,7 @@ def get_repo_name(url, source='github'):
 	if source == 'github':
 		repo_name = os.path.split(path)[-1]
 
-	return repo_name
+	return repo_name.split('.')[0]
 
 
 def get_owner_name(url, source='github'):
@@ -83,23 +88,55 @@ def get_repo_list(lines, source='github'):
 	return repo_list
 
 
+def util_set_user(usage):
+	with open('./corpus/repolist.txt') as f:
+		content = f.readlines()
+	# strip outer whitespace
+	content = [x.strip() for x in content] 
+
+	for line in content:
+		# super simple test for url
+		if not line.find('http://'):
+			#print(get_owner_name(line) +' : '+ get_repo_name(line))
+			for r in usage:
+				#print (r.get('ghrepo') + '==' + get_repo_name(line))
+				if (r.get('ghrepo') == get_repo_name(line)):
+					r['ghuser'] = get_owner_name(line)
+
+	print(json.dumps(usage, sort_keys=True, indent=2))
+
 
 def main():
 	jsonfile = open(sys.argv[2], 'r')
 	usage = json.loads(jsonfile.read())
 
+	util_set_user(usage)
+
+	#print(json.dumps(usage, sort_keys=True, indent=2))
+
+	importlib.import_module('sql_queries')
+
 	with sqlite3.connect(sys.argv[1]) as conn:
 		for r in usage:
 			repo_id = 1#add_repo(conn, r)
-			print('inserted repo_id: ' + str(repo_id) + ', name:' + r.get('ghrepo'))
+			#print('inserted repo_id: ' + str(repo_id) + ', name: ' + r.get('ghrepo'))
+			#oid = add_owner(conn, r)
 		
 
 
-################################## entry ##################################
+################################ entry point ################################
 
 if __name__ == '__main__':
 	if len(sys.argv) <= 2:
 		print("usage: $ ./additems.py dbfile jsonfile")
+
+
+	# may need to search for this file if we move things around
+	sys.path.append(
+	  os.path.expanduser(
+	    os.path.split(os.path.realpath('repolist'))[0] + '/' + SHARED))
+		
+	#print (sql_queries.insert_repos())
 
 	main()
 
