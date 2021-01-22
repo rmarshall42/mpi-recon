@@ -40,9 +40,13 @@ def add_data(conn, r):
 	return cur.lastrowid
 
 def add_repo(conn, r):
+	last_id = -1
 	rec = r.get('ghcounts')
+
 	tup = (
-		None, r.get('ghuser'), r.get('ghrepo'), 0, None, None, rec.get('OPENMP'),
+		None, r.get('ghuser'), 
+		r.get('ghrepo'), 0, None, None, 
+		rec.get('OPENMP'),
 	rec.get('OPENACC'),rec.get('CUDA'),rec.get('OPENCL'),rec.get('C_LINES'),rec.get('CPP_LINES'),rec.get('C_CPP_H_LINES'),
 	rec.get('FORTRAN_LINES'),rec.get('LINES_OF_CODE'))
 
@@ -50,7 +54,9 @@ def add_repo(conn, r):
 	cur.execute(sql_queries.insert_repos(), tup)
 	conn.commit()
 
-	return cur.lastrowid
+	last_id = cur.lastrowid
+
+	return last_id
 
 def add_owner(conn, r):
 	tup = (r.get('ghrepo'), get_owner_name(r.get('data').get(clone_url)))
