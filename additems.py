@@ -15,11 +15,34 @@ from common import sql_queries
 
 SHARED = 'common'
 
-# this is specific to github
-def add_repo(conn, r):
+# these are specific to github
+
+
+def call_exists(conn, call):
+	cur = conn.cursor()
+	cur.execute(sql_queries.select_call_id(), (call,))
+	rows = cur.fetchall()
+
+	return rows
+
+
+
+def add_data(conn, r):
 	rec = r.get('data')
+
+	for call in rec:
+		tup = (None, call)
+
+		cur = conn.cursor()
+		cur.execute(sql_queries.insert_mpicalls(), tup)
+		conn.commit()
+
+	return cur.lastrowid
+
+def add_repo(conn, r):
+	rec = r.get('ghcounts')
 	tup = (
-		None, 'shengg', r.get('ghrepo'), 0, None, None, rec.get('OPENMP'),
+		None, r.get('ghuser'), r.get('ghrepo'), 0, None, None, rec.get('OPENMP'),
 	rec.get('OPENACC'),rec.get('CUDA'),rec.get('OPENCL'),rec.get('C_LINES'),rec.get('CPP_LINES'),rec.get('C_CPP_H_LINES'),
 	rec.get('FORTRAN_LINES'),rec.get('LINES_OF_CODE'))
 
@@ -105,6 +128,8 @@ def util_set_user(usage):
 
 	print(json.dumps(usage, sort_keys=True, indent=2))
 
+	return 
+
 
 def main():
 	jsonfile = open(sys.argv[2], 'r')
@@ -118,9 +143,12 @@ def main():
 
 	with sqlite3.connect(sys.argv[1]) as conn:
 		for r in usage:
-			repo_id = 1#add_repo(conn, r)
-			#print('inserted repo_id: ' + str(repo_id) + ', name: ' + r.get('ghrepo'))
-			#oid = add_owner(conn, r)
+			repo_id = add_repo(conn, r)
+			searchtext = 'MPI_ALLGATHER'
+			exists = call_exists(conn, searchtext)
+			print ('|#')
+			print(exists)
+			print ('#|')
 		
 
 

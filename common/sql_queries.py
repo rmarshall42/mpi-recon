@@ -21,4 +21,13 @@ def insert_owners():
 
 	return q
 
+def insert_mpicalls():
+	q = ''' INSERT INTO MPICalls(call_id,call_name) VALUES(?,?) '''
 
+	return q
+
+
+def select_call_id():
+	q = ''' SELECT * FROM MPICalls WHERE call_name LIKE ? '''
+
+	return q
