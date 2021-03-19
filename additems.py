@@ -43,27 +43,41 @@ def add_repo(conn, r):
 	last_id = -1
 	rec = r.get('ghcounts')
 
-	tup = (
-		None, r.get('ghuser'), 
-		r.get('ghrepo'), 0, None, None, 
-		rec.get('OPENMP'),
-	rec.get('OPENACC'),rec.get('CUDA'),rec.get('OPENCL'),rec.get('C_LINES'),rec.get('CPP_LINES'),rec.get('C_CPP_H_LINES'),
-	rec.get('FORTRAN_LINES'),rec.get('LINES_OF_CODE'))
+	if rec is not None:
+		tup = (
+			None, r.get('ghuser'), 
+			r.get('ghrepo'), 0, None, None, 
+			rec.get('OPENMP'),
+		rec.get('OPENACC'),rec.get('CUDA'),rec.get('OPENCL'),rec.get('C_LINES'),rec.get('CPP_LINES'),rec.get('C_CPP_H_LINES'),
+		rec.get('FORTRAN_LINES'),rec.get('LINES_OF_CODE'))
 
-	cur = conn.cursor()
-	cur.execute(sql_queries.insert_repos(), tup)
-	conn.commit()
+		cur = conn.cursor()
+		cur.execute(sql_queries.insert_repos(), tup)
+		conn.commit()
 
-	last_id = cur.lastrowid
+		last_id = cur.lastrowid
 
 	return last_id
 
 def add_owner(conn, r):
-	tup = (r.get('ghrepo'), get_owner_name(r.get('data').get(clone_url)))
-
+	reponame = (r.get('ghrepo'))
+	tup = (reponame,)
 	cur = conn.cursor()
-	cur.execute(sql_queries.insert_owners(), urec)
+	cur.execute(sql_queries.get_repo_id(), tup)
 	conn.commit()
+	repo = cur.fetchone() # we only expect 1 result at most
+
+
+
+	if repo is not None and len(repo) > 0:
+
+		#print (repo[0])
+		#print ("---")
+		t2 = (repo[0], r.get('ghuser'))
+		#print (t2[0])
+		cur = conn.cursor()
+		cur.execute(sql_queries.insert_owners(), t2)
+		conn.commit()
 
 	return cur.lastrowid
 
@@ -118,7 +132,7 @@ def get_repo_list(lines, source='github'):
 
 
 def util_set_user(usage):
-	with open('./corpus/repolist.txt') as f:
+	with open('./corpus/repolist') as f:
 		content = f.readlines()
 	# strip outer whitespace
 	content = [x.strip() for x in content] 
@@ -132,7 +146,7 @@ def util_set_user(usage):
 				if (r.get('ghrepo') == get_repo_name(line)):
 					r['ghuser'] = get_owner_name(line)
 
-	print(json.dumps(usage, sort_keys=True, indent=2))
+	#print(json.dumps(usage, sort_keys=True, indent=2))
 
 	return 
 
@@ -149,12 +163,21 @@ def main():
 
 	with sqlite3.connect(sys.argv[1]) as conn:
 		for r in usage:
-			repo_id = add_repo(conn, r)
-			searchtext = 'MPI_ALLGATHER'
-			exists = call_exists(conn, searchtext)
-			print ('|#')
-			print(exists)
-			print ('#|')
+			if r is not None:
+				#print (r)
+				#print ("---")
+				repo_id = add_repo(conn, r)				
+				uname_id = add_owner(conn, r)
+
+
+
+
+
+				searchtext = 'MPI_ALLGATHER'
+				exists = call_exists(conn, searchtext)
+				#print ('|#')
+				#print(exists)
+				#print ('#|')
 		
 
 

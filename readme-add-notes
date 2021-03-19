@@ -1,0 +1,3 @@
+Workflow. It goes like this :
+
+[query -> gh_search_cli -> repolist -> buildcorpus] --> [mpiusage.py -> usage.json] --> [additems.py -> mpiu.db]

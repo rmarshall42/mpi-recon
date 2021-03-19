@@ -3,7 +3,7 @@
 
 def insert_repos():
 	q = ''' INSERT INTO Repos (
-		repo_id,owner,reponame,revision_id,clone_url,
+		repo_id,owner,repo_name,revision_id,clone_url,
 		retrieval_date,omp_occs,acc_occs,cuda_occs,ocl_occs,
 		c_lines,cpp_lines,c_cpp_h_lines,fortran_lines,total_lines)
 		VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); ''' 
@@ -29,5 +29,12 @@ def insert_mpicalls():
 
 def select_call_id():
 	q = ''' SELECT * FROM MPICalls WHERE call_name LIKE ? '''
+
+	return q
+
+
+
+def get_repo_id():
+	q = ''' SELECT repo_id FROM Repos WHERE repo_name LIKE ? '''
 
 	return q

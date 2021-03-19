@@ -1,0 +1,23 @@
+{
+  "MPI_COMM_SIZE": 1,
+  "MPI_ALLREDUCE": 8,
+  "MPI_BCAST": 7,
+  "MPI_REDUCE": 2,
+  "MPI_RECV": 4,
+  "MPI_INIT": 1,
+  "MPI_COMM_RANK": 1,
+  "MPI_FINALIZE": 1,
+  "MPI_ABORT": 15,
+  "MPI_WTIME": 4,
+  "MPI_SEND": 4,
+  "MPI_BARRIER": 10,
+  "OPENMP": 0,
+  "OPENACC": 0,
+  "CUDA": 0,
+  "OPENCL": 0,
+  "C_LINES": 0,
+  "CPP_LINES": 741,
+  "C_CPP_H_LINES": 44,
+  "FORTRAN_LINES": 0,
+  "LINES_OF_CODE": 820
+}

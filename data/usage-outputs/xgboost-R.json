@@ -1,0 +1,11 @@
+{
+  "OPENMP": 102,
+  "OPENACC": 0,
+  "CUDA": 38,
+  "OPENCL": 0,
+  "C_LINES": 85,
+  "CPP_LINES": 15140,
+  "C_CPP_H_LINES": 19621,
+  "FORTRAN_LINES": 0,
+  "LINES_OF_CODE": 48836
+}
