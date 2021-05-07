@@ -55,12 +55,12 @@ for entry in os.scandir(outputs_location):
 				total_lines = data['LINES_OF_CODE']
 
 				# first field is sql autonumber type
-				print ('None,' + 
-			  owner + ',' + reponame + ',' + revision_id + ',' + clone_url +','+ 
-					retrieval_date + ',' + str(ocl_occs) +','+ str(acc_occs) +
-					',' + str(cuda_occs) + ',' + str(omp_occs) + ',' + str(c_lines) + ',' + 
-					str(cpp_lines) + ',' + str(c_cpp_h_lines) + ',' + str(fortran_lines) + ',' + 
-					str(total_lines) )
+				# print ('None,' + 
+			  #   owner + ',' + reponame + ',' + revision_id + ',' + clone_url +','+ 
+				# 	retrieval_date + ',' + str(ocl_occs) +','+ str(acc_occs) +
+				# 	',' + str(cuda_occs) + ',' + str(omp_occs) + ',' + str(c_lines) + ',' + 
+				# 	str(cpp_lines) + ',' + str(c_cpp_h_lines) + ',' + str(fortran_lines) + ',' + 
+				# 	str(total_lines) )
 
 				exclude = ['OPENMP','CUDA','OPENACC','OPENCL','C_LINES','CPP_LINES','C_CPP_H_LINES','FORTRAN_LINES','LINES_OF_CODE']
 
