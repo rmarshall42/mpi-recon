@@ -96,8 +96,8 @@ def call_search(g, query, minval = 1):
 	resultpage = None
 	resultset = []
 	perpage = 30
-	maxr = 300
-	waits = 7
+	maxr = 400
+	waits = 10
 
 	sleep_limit = 1.0
 	time_limit = 10.0

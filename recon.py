@@ -16,6 +16,7 @@ import repo
 import search
 import os
 import json
+import sys
 #import sys
 #import getopt
 import argparse
@@ -56,21 +57,21 @@ def recon_probe(g, str_query):
 
 
 def recon_search(g, str_query):
-	print ("** mpi-recon: live search **")
-	print ("query: " + str_query)
+	print ("** mpi-recon: live search **", file = sys.stderr)
+	print ("query: " + str_query, file = sys.stderr)
 	#resultset = search.do_search(g, str_query,20)
 	resultset = search.github_search(g, str_query)
 	if resultset:
 		for i,snip in resultset.items():
-			print(str(i))
+			print(str(i), file = sys.stderr)
 			if snip:
 				for k,line in snip.items():
 					#print(str(k)+"\n"+line)
-					print(k)
+					print(k, file = sys.stderr)
 
 					json_object = json.dumps(line, indent = 4) 
-					print(json_object)
-			print("--------")
+					print(json_object, file = sys.stderr)
+			print("--------", file = sys.stderr)
 #----------------------------------------------------------------------------
 
 
