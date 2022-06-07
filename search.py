@@ -134,8 +134,8 @@ def call_search(g, query, minval = 1):
 			waits -= 1
 
 		finally:
-			i = maxr # just quit with what we have
-
+			#i = maxr # just quit with what we have
+			i += 1
 	#print (f"number of results: {resultpage.totalCount}")
 
 	return resultset if len(resultset) > 0 else None
