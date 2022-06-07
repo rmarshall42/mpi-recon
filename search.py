@@ -12,12 +12,13 @@
 #############################################################################
 
 
-#import repo
+import repo
 
 import os
 import re
 import time
-
+import json
+from github import GithubException
 #import sys
 #import getopt
 #import argparse
@@ -92,48 +93,89 @@ def get_file(file, cachedir='./cache'):
 
 #manage rate limit before calling Github.search_code
 def call_search(g, query, minval = 1):
-	result = None
+	resultpage = None
+	resultset = []
+	perpage = 30
+	maxr = 300
+	waits = 7
+
+	sleep_limit = 1.0
+	time_limit = 10.0
+
 	rate_limit = g.get_rate_limit()
 	srate = rate_limit.search
 	crate = rate_limit.core
 
-	sleep_limit = 0.5
-	time_limit = 15.0
+	i = 0
+	k = perpage
+	#tl = time_limit
 
-	while srate.remaining < minval or crate.remaining < minval:
-		time.sleep(sleep_limit)
-		time_limit -= sleep_limit
-		print(f'rates(search, core): ({srate.remaining},{crate.remaining})')
+	while i < maxr and waits > 0 and srate.remaining > 0:
+		try:
+			resultpage = g.search_code(query) #[i:k-1]
+			#resultpage2 = g.search_code(query, order='desc')[perpage:(2*perpage) - 1]
+			if resultpage:
 
-	result = g.search_code(query, order='desc')
+				for res in resultpage:
+					#print (res.download_url)
+					user_reponame = repo.get_repo_user_and_name(res.download_url)
+					print(f"https://github.com/{user_reponame}.git")
+					resultset.append(res)
+				
+				#i += perpage
+				#k += perpage
+				i += 1
+			else:
+				i = maxr
+		except GithubException:
+			#print(f'rates(search, core): ({srate.remaining},{crate.remaining})')
+			#while tl > 0 and (srate.remaining < minval or crate.remaining < minval):
+			time.sleep(time_limit)
+			waits -= 1
 
-	return result[:20]
+		finally:
+			i = maxr # just quit with what we have
+
+	#print (f"number of results: {resultpage.totalCount}")
+
+	return resultset if len(resultset) > 0 else None
 #----------------------------------------------------------------------------
 
 
-def github_search(g, keyword, cachedir="./cache"):
+def github_search(g, keyword, cachedir="./cache", flood_ctrl = 4):
 	query = f'"{keyword} " language:cpp language:c'
 	result = call_search(g, query)
 	resultset = {}
 
-	flood_ctrl = 4 # stop after retrieving this many files
+	#flood_ctrl = 4 # stop after retrieving this many files
 
 	if result:
+		#print (result.totalCount)
 		rate_limit = g.get_rate_limit()
 		srate = rate_limit.search
 		crate = rate_limit.core
 		i = 0
 		
 		for file in result:
-			print (f'rates({srate},{crate})')
+			user_reponame = repo.get_repo_user_and_name(file.download_url)
+			#print (user_reponame)
+			#print (f'rates({srate},{crate})')
+			resultset[user_reponame] = {
+				"filename" : file.name,
+				"url" : file.download_url,
+				"occurrences": {} # will stay empty if called by probe
+			}
+			
 			if i < flood_ctrl:
 				res = get_file(file)
 				if res:
-					resultset[file.name] = \
-						grep_file_for(cachedir + "/" + file.name, keyword)			
-			else:
-				print("flood_ctrl")
-				print(f'{file.download_url}')
+					resultset[user_reponame]["occurrences"] = \
+						grep_file_for(cachedir + "/" + file.name, keyword)	
+
+			#else:
+				#print("flood_ctrl")
+				#resultset[file.name] = file.download_url
+				#print(f'{file.download_url}')
 			i += 1
 
 	return resultset
@@ -141,7 +183,7 @@ def github_search(g, keyword, cachedir="./cache"):
 
 
 def do_search(g, q, max_results=0):
-	i = 1
+	i = 0
 
 	for rp in g.search_repositories(q, sort="stars", order="desc"):
 		row = {
@@ -152,8 +194,9 @@ def do_search(g, q, max_results=0):
 			'updated_at' : rp.updated_at,
 			'created_at' : rp.created_at
 		}
-		i=i+1
+		i += 1
 		print(row)
 		if i == max_results:
+			print (f"i= {i}, max results= {max_results}")
 			break
 

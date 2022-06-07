@@ -15,6 +15,7 @@
 
 from github import Github
 import os
+from urllib.parse import urlparse
 import re
 import csv
 import datetime
@@ -231,7 +232,14 @@ def handle_tags(repo):
 	write_tags(tags, "tags.csv")
 # --------------------------------------------------------------------------
 
+def get_repo_user_and_name(url, source='github'):
+	#print (url)
+	path = urlparse(url).path
+	repo_name = ''
+	if source == 'github':
+		repo_name = path.split('/')
 
+	return f"{repo_name[1]}/{repo_name[2]}"
 
 # --------------------------------------------------------------------------
 # --------------------------------------------------------------------------

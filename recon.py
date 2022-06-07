@@ -15,6 +15,7 @@
 import repo
 import search
 import os
+import json
 #import sys
 #import getopt
 import argparse
@@ -41,12 +42,14 @@ def print_resultset(resultset):
 
 def get_interesting(resultset):
 	print (resultset)
+#----------------------------------------------------------------------------
+
 
 def recon_probe(g, str_query):
 	print ("** mpi-recon: live probe **")
 	print ("query: " + str_query)
 	#search.do_search(g, str_query)
-	resultset = search.github_search(g, str_query)
+	resultset = search.github_search(g, str_query, flood_ctrl=-1)
 	get_interesting(resultset)
 
 #----------------------------------------------------------------------------
@@ -55,14 +58,19 @@ def recon_probe(g, str_query):
 def recon_search(g, str_query):
 	print ("** mpi-recon: live search **")
 	print ("query: " + str_query)
-	#search.do_search(g, str_query)
+	#resultset = search.do_search(g, str_query,20)
 	resultset = search.github_search(g, str_query)
+	if resultset:
+		for i,snip in resultset.items():
+			print(str(i))
+			if snip:
+				for k,line in snip.items():
+					#print(str(k)+"\n"+line)
+					print(k)
 
-	for i,snip in resultset.items():
-		print(str(i))
-		for k,line in snip.items():
-			print(str(k)+"\n"+line)
-		print("--------")
+					json_object = json.dumps(line, indent = 4) 
+					print(json_object)
+			print("--------")
 #----------------------------------------------------------------------------
 
 
@@ -70,7 +78,7 @@ def recon_cli(g):
 	parser = argparse.ArgumentParser(prog="mpi-recon")
 	parser.add_argument("--info", "-i", help="show some info")
 	parser.add_argument("--probe", "-P", 
-		default="MPI_Allgather", 
+		#default="MPI_Allgather", 
 		help="probe for interesting repos, using the string in SEARCH")
 	parser.add_argument("--search", "-s", 
 		default="MPI_Allgather", 
@@ -93,7 +101,7 @@ if __name__ == "__main__":
 	
 	#search.grep_file_for('allred.c', '[0-9]')
 	#search.grep_file_for('allred.c', 'MPI_Allreduce')
-
+	# Alltoall, Alltoallv, Gather, Gatherv, Scatter, Scatterv, Reduce, Bcast, Allgather
 	#repo.hello()
 
 	g = Github(os.environ.get('GITHUB_TOKEN'))
