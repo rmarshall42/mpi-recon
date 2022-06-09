@@ -26,8 +26,8 @@ def create_connection(db_file):
 
 
 def mk_clone_cmd(url):
-	return str("git clone " + url + ".git")
-
+	#return str("git clone " + url + ".git")
+	return str("git clone " + url)
 
 
 def get_repo_name(url):
