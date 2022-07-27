@@ -1,0 +1,17 @@
+ccollections
+defaultdict
+p0
+(c__builtin__
+list
+p1
+tp2
+Rp3
+S'scotch/src/libscotch/dorder_io.c'
+p4
+(lp5
+(S'X_MPI_ANY_SOURCE()'
+p6
+S'179'
+p7
+tp8
+as.
