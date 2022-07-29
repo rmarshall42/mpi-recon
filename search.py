@@ -18,6 +18,8 @@ import os
 import re
 import time
 import json
+from datetime import datetime
+
 from github import GithubException
 #import sys
 #import getopt
@@ -180,6 +182,38 @@ def github_search(g, keyword, cachedir="./cache", flood_ctrl = 4):
 
 	return resultset
 #----------------------------------------------------------------------------
+
+def github_repo_search(g, keyword=None, topic=None):
+	repolist = []
+	flood_ctrl = 200
+	i = 0
+	query = f'"{keyword} " topic:{topic}'
+
+	try:
+		for rp in g.search_repositories("", topic="mpi", sort="stars", order="desc"):
+			row = {
+				'name' : rp.name,
+				'full_name' : rp.full_name,
+				'language' : rp.language,
+				'stars' : rp.stargazers_count,
+				'forks' : rp.forks_count,
+				'updated_at' : str(rp.updated_at),
+				'created_at' : str(rp.created_at),
+				'clone_url' : rp.clone_url,
+				'size' : rp.size
+			}
+			i+=1
+			print(row)
+			repolist.append(row)
+			if i >= flood_ctrl:
+				time.sleep(15)
+				i = 0
+	except GithubException:
+		nrepos = len(repolist)
+		print (f"got {nrepos} repos before rate limit exeeded")
+
+	return repolist
+
 
 
 def do_search(g, q, max_results=0):

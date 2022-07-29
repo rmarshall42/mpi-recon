@@ -15,6 +15,9 @@
 
 from github import Github
 import os
+import search
+import json
+
 from urllib.parse import urlparse
 import re
 import csv
@@ -108,6 +111,7 @@ def get_recon_stats(repo):
 	  'language': repo.language,
 	    'nstars': repo.stargazers_count,
 	    'nforks': repo.forks_count,
+	      'size': repo.size,
 	 'nbranches': repo.get_branches().totalCount,
 	     'ntags': repo.get_tags().totalCount,
 	 'nreleases': repo.get_releases().totalCount,
@@ -145,12 +149,14 @@ def get_recon_tags(repo):
 		stats = tag.commit.stats
 		xcmm = {
 			'name': tag.name,
+			'size': repo.size,
 			'author_date': cmm.commit.author.date,
 			'nfiles': len(cmm.files),
 			'sha': cmm.sha,
 			'ninsertions': cmm.stats.additions,
 			'ndeletions': cmm.stats.deletions,
-			'ntotal_changes': cmm.stats.total
+			'ntotal_changes': cmm.stats.total,
+			'tarball_url': tag.tarball_url
 		}
 
 		tags_extracted.append(xcmm)
@@ -161,12 +167,13 @@ def get_recon_tags(repo):
 def write_tags(tags_extracted, fileoutname="tags.csv"):
 	csv_columns = [			
 		'name',
+		'size',
 		'author_date',
 		'nfiles',
 		'sha',
 		'ninsertions',
 		'ndeletions',
-		'ntotal_changes'  ]
+		'ntotal_changes', 'tarball_url'  ]
 
 
 	try:
@@ -187,7 +194,7 @@ def write_commits(commits_extracted, fileoutname="commits.csv"):
 		'sha',
 		'ninsertions',
 		'ndeletions',
-		'ntotal_changes'  ]
+		'ntotal_changes', 'tarball_url'  ]
 
 
 	try:
@@ -246,28 +253,34 @@ def get_repo_user_and_name(url, source='github'):
 
 if __name__ == "__main__":
 	# using an access token
+
 	g = Github(os.environ.get('GITHUB_TOKEN'))
+	# repo = g.get_repo("Mantevo/miniFE")
 
-	#repo = g.get_repo("trilinos/Trilinos")
-	repo = g.get_repo("Mantevo/miniFE")
+	# handle_tags(repo)
 
-	#handle_tags(repo)
-	#handle_commits(repo)
-	#get_recon_contents(repo)
-	#stats = get_recon_stats(repo)
-	flatfiles = []
-	sha = get_sha_from_branchname(repo, "master")
-	flatfiles = get_recon_file_list(repo, sha, flatfiles)
+	# stats = get_recon_stats(repo)
+	# flatfiles = []
+	# sha = get_sha_from_branchname(repo, "master")
+	# flatfiles = get_recon_file_list(repo, sha, flatfiles)
+	# total_size = 0;
 
-	for f in flatfiles:
-		print(f.sha +" | "+ f.path+ " | " +f.url +" | "+ str(f.size))
+	# for f in flatfiles:
+	# 	total_size += f.size
+	# 	print(f.sha +" | "+ f.path+ " | " +f.url +" | "+ str(f.size) )
+
+	# print ('nfiles: ' +str(len(flatfiles))+ ' total_size: '+ str(total_size))
+
+	repolist = search.github_repo_search(g, topic='mpi')
+
+	#print(repolist)
+
+	f = open("data/topic-mpi.json", 'w')
+	f.write(json.dumps(repolist))
+	f.close()
 
 
-	# for release in repo.get_releases():
-	# 	tc = release.target_commitish
-	# 	sha = tc if valid_sha(tc) else get_sha_from_branchname(repo, tc)
-		
-	# 	print (str(release.created_at) +","+ release.title+","+ sha)
 
-	#get_tags(g)
+
+
 
