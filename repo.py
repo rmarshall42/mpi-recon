@@ -104,7 +104,7 @@ def get_recon_commits(repo, e=EARLIEST):
 
 
 def get_recon_stats(repo):
-	sizes = {
+	stats = {
 	        'id': repo.id,
 	      'name': repo.name,
 	 'full_name': repo.full_name,
@@ -123,7 +123,8 @@ def get_recon_stats(repo):
 #	'nclones_wk': repo.get_clones_traffic(per="week"),
 
 	}
-	return sizes
+
+	return stats
 # --------------------------------------------------------------------------
 
 
@@ -238,6 +239,7 @@ def handle_tags(repo):
 	tags = get_recon_tags(repo)
 	write_tags(tags, "tags.csv")
 # --------------------------------------------------------------------------
+
 
 def get_repo_user_and_name(url, source='github'):
 	#print (url)

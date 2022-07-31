@@ -74,17 +74,93 @@ def recon_search(g, str_query):
 			print("--------", file = sys.stderr)
 #----------------------------------------------------------------------------
 
+def recon_repo_search(g, querykw=None, withtopic="mpi", jsonfile=None, dbfile=None):
+	results = {
+		'nfound' = 0,
+		'ninserted' = 0;
+	}
+	repolist = []
+
+	if jsonfile is None:
+		flood_ctrl = 200
+		repolist = search.github_repo_search(g, querykw, withtopic, flood_ctrl)
+
+	else:
+		try:
+			jsonfile = open(jsonfile, 'r')
+			repolist = json.loads(jsonfile.read())
+		except OSError as exception:
+			print (exception)
+
+	results['nfound'] = 1
+
+	for repo in repolist:
+		#print (str(results['nfound']) + "\t" + str(repo['size']) +"\t"+ repo['clone_url'])
+		results['nfound'] += 1
+
+	print (f"results found from github: {results['nfound']}")
+	#print (f"results inserted into db: {results['ninserted']}")
+
+
+#----------------------------------------------------------------------------
+
 
 def recon_cli(g):
+
+
+	list_infile = None
+	json_infile = None
+	dbfile = None
+
+	json_outfile = None
+	list_outfile = None
+
+	dbexts = ["db", "sqlite"]
+
+
 	parser = argparse.ArgumentParser(prog="mpi-recon")
-	parser.add_argument("--info", "-i", help="show some info")
+	parser.add_argument("--info", "-I", help="show some info")
 	parser.add_argument("--probe", "-P", 
-		#default="MPI_Allgather", 
+		default=None, # "MPI_Allgather", 
 		help="probe for interesting repos, using the string in SEARCH")
 	parser.add_argument("--search", "-s", 
-		default="MPI_Allgather", 
+		default=None, #"MPI_Allgather", 
 		help="do a live search of github, using the string in SEARCH")
+	parser.add_argument("--repos-by-topic", "-r", 
+		default=None, 
+		help="add a list of repositories into a dbms, example: data/topics-mpi.json")
+	parser.add_argument("--infile", "-i", 
+		default=None, 
+		help="input file, text or JSON, depending on other options")
+	parser.add_argument("--outfile", "-o", 
+		default=None, 
+		help="output file, text, JSON or db file, depending on other options")
+#	parser.add_argument("--local", "-L", 
+#		action='store_true', 
+#		help="tell mpi-recon to do a local search")
+
+
 	args = parser.parse_args()
+
+
+	if args.infile:
+		ext = args.infile.split(".")[-1].lower()
+
+		if ext == "json":
+			json_infile = args.infile
+		else:
+			list_infile = args.infile
+
+	if args.outfile:
+		ext = args.outfile.split(".")[-1].lower()
+		if ext in dbexts:
+			dbfile = args.outfile
+		elif ext == "json":
+			json_outfile = args.outfile
+		else:
+			list_outfile = args.outfile
+
+
 
 	if args.probe:
 		q = args.probe
@@ -93,6 +169,16 @@ def recon_cli(g):
 		#q = args.search + " language:cpp language:c language:fortran"
 		q = args.search
 		recon_search(g, q)
+	elif args.repos_by_topic:
+		q = args.repos_by_topic
+		print (f"json file: {json_infile}")
+		recon_repo_search(g, q, jsonfile=json_infile)
+
+
+		#if json_outfile is not None:
+
+
+
 	else:
 		recon_info(args.info)
 

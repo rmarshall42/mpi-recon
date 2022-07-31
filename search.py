@@ -183,7 +183,7 @@ def github_search(g, keyword, cachedir="./cache", flood_ctrl = 4):
 	return resultset
 #----------------------------------------------------------------------------
 
-def github_repo_search(g, keyword=None, topic=None):
+def github_repo_searchx(g, keyword=None, topic=None):
 	repolist = []
 	flood_ctrl = 200
 	i = 0
@@ -213,6 +213,31 @@ def github_repo_search(g, keyword=None, topic=None):
 		print (f"got {nrepos} repos before rate limit exeeded")
 
 	return repolist
+
+
+#----------------------------------------------------------------------------
+
+def github_repo_search(g, keyword=None, withtopic=None, flood_ctrl=200):
+	repolist = []
+	i = 0
+	query = f'"{keyword}"'
+
+	try:
+		for repo in g.search_repositories(query, topic=withtopic, sort="stars", order="desc"):
+			i+=1
+			#print(repo)
+			repolist.append(repo)
+			if i >= flood_ctrl:
+				time.sleep(15)
+				i = 0
+	except GithubException:
+		print (f"got {str(len(repolist))} repos before rate limit exeeded")
+
+	print (f"got {str(len(repolist))} repos before rate limit exeeded")
+
+	return repolist
+#----------------------------------------------------------------------------
+
 
 
 
