@@ -144,16 +144,19 @@ def call_search(g, query, minval = 1):
 #----------------------------------------------------------------------------
 
 
-def github_search(g, keyword, cachedir="./cache", flood_ctrl = 4):
-	query = f'"{keyword} " language:cpp language:c'
-	result = call_search(g, query)
+def github_search(rcli, cachedir="./cache", flood_ctrl = 4):
+
+	kw = " ".join(rcli.keywords)
+
+	query = f'"{kw} " language:cpp language:c'
+	result = call_search(rcli.github_obj, query)
 	resultset = {}
 
 	#flood_ctrl = 4 # stop after retrieving this many files
 
 	if result:
 		#print (result.totalCount)
-		rate_limit = g.get_rate_limit()
+		rate_limit = rcli.github_obj.get_rate_limit()
 		srate = rate_limit.search
 		crate = rate_limit.core
 		i = 0
@@ -217,31 +220,31 @@ def github_repo_searchx(g, keyword=None, topic=None):
 
 #----------------------------------------------------------------------------
 
-def github_repo_search(g, keyword=None, withtopic=None, flood_ctrl=200):
-	repolist = []
-	i = 0
-	query = f'"{keyword}"'
+# def github_repo_search(g, keyword=None, withtopic=None, flood_ctrl=200):
+# 	repolist = []
+# 	i = 0
+# 	query = f'"{keyword}"'
 
-	try:
-		for repo in g.search_repositories(query, topic=withtopic, sort="stars", order="desc"):
-			i+=1
-			#print(repo)
-			repolist.append(repo)
-			if i >= flood_ctrl:
-				time.sleep(15)
-				i = 0
-	except GithubException:
-		print (f"got {str(len(repolist))} repos before rate limit exeeded")
+# 	try:
+# 		for repo in g.search_repositories(query, topic=withtopic, sort="stars", order="desc"):
+# 			i+=1
+# 			#print(repo)
+# 			repolist.append(repo)
+# 			if i >= flood_ctrl:
+# 				time.sleep(15)
+# 				i = 0
+# 	except GithubException:
+# 		print (f"got {str(len(repolist))} repos before rate limit exeeded")
 
-	print (f"got {str(len(repolist))} repos before rate limit exeeded")
+# 	print (f"got {str(len(repolist))} repos before rate limit exeeded")
 
-	return repolist
+# 	return repolist
 #----------------------------------------------------------------------------
 
 
 
 
-def do_search(g, q, max_results=0):
+def do_searchx(g, q, max_results=0):
 	i = 0
 
 	for rp in g.search_repositories(q, sort="stars", order="desc"):

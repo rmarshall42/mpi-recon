@@ -21,59 +21,14 @@ import sys
 #import getopt
 import argparse
 from github import Github
+
+sys.path.append(f"{os.getcwd()}/common")
+
+
+from recon_config import ReconConfig
 #----------------------------------------------------------------------------
 
 
-class ReconConfig:
-
-	do_search = False
-	do_probe = False
-	do_info = False
-	do_usage = False
-	force_local = False
-
-	list_infile = None
-	json_infile = None
-
-	json_outfile = None
-	list_outfile = None
-
-	dbfile = None
-	clone_root = None
-
-	keywords = []
-	topics = []
-
-	dbexts = ["db", "sqlite"]
-
-	github_obj = None
-	#------------------------------------------------------------------------
-
-
-	def __init__(self, ghtok=None):
-		if ghtok:
-			self.github_obj = Github(ghtok)
-	#------------------------------------------------------------------------
-
-
-	def to_string(self):
-		return (f"""Recon Info_________
-			keywords:      {self.keywords}
-			topics:        {self.topics}
-			list_infile:   {self.list_infile}
-			json_infile:   {self.json_infile}
-			dbfile:        {self.dbfile}
-			list_outfile:  {self.list_outfile}
-			json_outfile:  {self.json_infile}
-			clone_root:    {self.clone_root}
-
-			do_search:     {self.do_search}
-			do_probe:      {self.do_probe}
-			do_info:       {self.do_info}
-			do_usage:      {self.do_usage}
-			force_local:   {self.force_local}
-			"""
-		)
 #----------------------------------------------------------------------------
 #----------------------------------------------------------------------------
 
@@ -83,7 +38,7 @@ def recon_cli(ghtok):
 	parser = argparse.ArgumentParser(prog="mpi-recon")
 
 	parser.add_argument("--info", "-I", 
-		action = argparse.BooleanOptionalAction,
+		action = 'store_true',
 		default = None,
 		help="""show some info"""
 	)
@@ -97,7 +52,7 @@ def recon_cli(ghtok):
 	)
 
 	parser.add_argument("--probe", "-P", 
-		action = argparse.BooleanOptionalAction,
+		action = 'store_true',
 		default = None,
 		help = """Probe github for interesting repos, 
 					optionally using the keyword(s) in KEYWORDS, and
@@ -107,7 +62,7 @@ def recon_cli(ghtok):
 	)
 
 	parser.add_argument("--search", "-S", 
-		action = argparse.BooleanOptionalAction,
+		action = 'store_true',
 		default = None,
 		help = """Perform a live search of github, 
 					optionally using the keyword(s) in KEYWORDS, and
@@ -119,7 +74,7 @@ def recon_cli(ghtok):
 	)
 
 	parser.add_argument("--usage", "-A", 
-		action = argparse.BooleanOptionalAction,
+		action = 'store_true',
 		default = None, 
 		help = """Perform usage analysis of a list of repositories 
 				   (corpus.json or query results)."""
@@ -153,7 +108,7 @@ def recon_cli(ghtok):
 	)
 
 	parser.add_argument("--force-local", "-L", 
-		action = argparse.BooleanOptionalAction,
+		action = 'store_true',
 		default = False,
 		help = """Force a local search or probe."""
 	)
@@ -197,7 +152,7 @@ def recon_cli(ghtok):
 		assert recon.do_search is False, \
 			"probe + search currently unsupported"
 
-		if len(recon.keywords) > 0 or len(recon.topics) > 0:
+		if len(recon.keywords) > 0 or len(recon.topics) > 0 or args.infile:
 			recon.do_probe = True
 
 
