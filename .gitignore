@@ -4,3 +4,4 @@ corpus
 corpus3
 3rd-party
 mpi-recon.tar.gz
+__pycache__

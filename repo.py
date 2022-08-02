@@ -15,7 +15,7 @@
 
 from github import Github
 import os
-import search
+import recon_search
 import json
 
 from urllib.parse import urlparse
